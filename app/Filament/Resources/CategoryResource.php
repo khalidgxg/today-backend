@@ -73,8 +73,10 @@ class CategoryResource extends Resource
                 TextColumn::make('description')
                     ->limit(50)
                     ->tooltip(fn (Category $record): ?string => $record->description),
-                TextColumn::make('color'),
-                TextColumn::make('backgroundColor'),
+                TextColumn::make('color')
+                    ->formatStateUsing(fn ($state) => view('components.color-badge', ['color' => $state])),
+                TextColumn::make('backgroundColor')
+                    ->formatStateUsing(fn ($state) => view('components.color-badge', ['color' => $state])),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
