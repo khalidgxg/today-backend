@@ -46,8 +46,8 @@ return [
 
         'media' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/media'),
-            'url' => env('APP_URL').'/storage/media',
+            'root' => '/home/today/htdocs/media',
+            'url' => env('APP_URL').'/media',
             'visibility' => 'public',
             'throw' => false,
         ],
