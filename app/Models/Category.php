@@ -63,6 +63,24 @@ class Category extends Model implements HasMedia
             ->width(100)
             ->height(100)
             ->sharpen(10)
-            ->performOnCollections('category_icons');
+            ->optimize()
+            ->performOnCollections('category_icons')
+            ->storeConversionsOnDisk('media');
+
+        $this->addMediaConversion('medium')
+            ->width(300)
+            ->height(300)
+            ->sharpen(10)
+            ->optimize()
+            ->performOnCollections('category_icons')
+            ->storeConversionsOnDisk('media');
+
+        $this->addMediaConversion('large')
+            ->width(600)
+            ->height(600)
+            ->sharpen(10)
+            ->optimize()
+            ->performOnCollections('category_icons')
+            ->storeConversionsOnDisk('media');
     }
 }
