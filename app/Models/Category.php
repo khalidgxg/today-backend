@@ -32,8 +32,9 @@ class Category extends Model implements HasMedia
         $media = $this->getFirstMedia('category_icons');
         if ($media) {
             return [
-                'original' => $media->getUrl(),
+                'original' =>$media->getUrl('large'),
                 'thumbnail' => $media->getUrl('thumb'),
+                'large' => $media->getUrl('large'),
                 'name' => $media->file_name,
             ];
         }
@@ -54,6 +55,7 @@ class Category extends Model implements HasMedia
     {
         $this->addMediaCollection('category_icons')
             ->singleFile()
+            ->useDisk('media')
             ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/gif', 'image/webp']);
     }
 
@@ -63,24 +65,27 @@ class Category extends Model implements HasMedia
             ->width(100)
             ->height(100)
             ->sharpen(10)
+            ->format('png')
             ->optimize()
-            ->performOnCollections('category_icons')
-            ->storeConversionsOnDisk('media');
+            ->nonQueued()
+            ->performOnCollections('category_icons');
 
         $this->addMediaConversion('medium')
             ->width(300)
             ->height(300)
             ->sharpen(10)
+            ->format('png')
             ->optimize()
-            ->performOnCollections('category_icons')
-            ->storeConversionsOnDisk('media');
+            ->nonQueued()
+            ->performOnCollections('category_icons');
 
         $this->addMediaConversion('large')
             ->width(600)
             ->height(600)
             ->sharpen(10)
+            ->format('png')
             ->optimize()
-            ->performOnCollections('category_icons')
-            ->storeConversionsOnDisk('media');
+            ->nonQueued()
+            ->performOnCollections('category_icons');
     }
 }
