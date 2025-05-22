@@ -82,7 +82,6 @@ class Category extends Model implements HasMedia
         $this->addMediaConversion('large')
             ->width(600)
             ->height(600)
-            ->sharpen(10)
             ->format('png')
             ->optimize()
             ->nonQueued()

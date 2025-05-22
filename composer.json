@@ -11,6 +11,7 @@
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "phpoffice/phpspreadsheet": "^4.2",
         "spatie/laravel-medialibrary": "^11.0"
     },
     "require-dev": {
