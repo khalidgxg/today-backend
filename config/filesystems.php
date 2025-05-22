@@ -8,8 +8,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may specify the default filesystem disk that should be used
-    | by the framework. The "local" disk, as well as a variety of cloud
-    | based disks are available to your application for file storage.
+    | by the framework. The "local" disk is a great starting point as it
+    | utilizes local storage.
     |
     */
 
@@ -20,11 +20,11 @@ return [
     | Filesystem Disks
     |--------------------------------------------------------------------------
     |
-    | Below you may configure as many filesystem disks as necessary, and you
-    | may even configure multiple disks for the same driver. Examples for
-    | most supported storage drivers are configured here for reference.
+    | Here you may configure as many filesystem "disks" as you wish, and you
+    | may even configure multiple disks of the same driver. Defaults have
+    | been setup for each driver as a starting point.
     |
-    | Supported drivers: "local", "ftp", "sftp", "s3"
+    | Supported Drivers: "local", "ftp", "sftp", "s3"
     |
     */
 
@@ -62,7 +62,6 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
-            'report' => false,
         ],
 
     ],
@@ -80,7 +79,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('media') => '/home/today/htdocs/media',
+        public_path('media') => env('APP_ENV') == 'local' ? storage_path('app/public/media') : '/home/today/htdocs/media',
     ],
 
 ];
