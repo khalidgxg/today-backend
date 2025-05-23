@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\CategoryController;
 
 /*
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/categories', [CategoryController::class, 'index']); 
+Route::get('/categories/{id}/messages', [MessageController::class, 'getMessagesByCategory']);
